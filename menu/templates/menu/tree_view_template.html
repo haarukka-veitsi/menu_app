@@ -1,0 +1,21 @@
+<li>{% if key.slug != select_slug %}
+        <a href="{{ key.get_absolute_url }}" style="text-decoration: none; color: #9932CC">
+            {{ key.name }}
+        </a>
+    {% else %}
+        <div style="color: #1E90FF">
+            {{ key.name }}
+        </div>
+    {% endif %}
+    {% if value %}
+        <ul>
+            {% for val in value %}
+                {% for k, v in val.items %}
+                    {% with key=k value=v template_name="menu/tree_view_template.html" %}
+                        {% include template_name %}
+                    {% endwith %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+ </li>
